@@ -6,7 +6,7 @@
   
   <property name="base.name" value="org.pathvisio.go"/>
   <property name="jar.name" value="${base.name}.jar"/>
-  <property name="pathvisio.dir" value="../../pathvisio"/>
+  <property name="pathvisio.dir" value="../pathvisio"/>
 
   <property environment="env"/>
   <property name="install.dir" value="${env.HOME}/.PathVisio/plugins/"/>
@@ -45,16 +45,11 @@
   
 	<target name="jar" depends="build"> 
 		<echo>Creating JAR: ${jar.name}</echo>
-		<taskdef resource="aQute/bnd/ant/taskdef.properties" classpath="${pathvisio.dir}/lib-build/biz.aQute.bnd.jar"/> 
-		<bnd classpath="build" 
-			output="${jar.name}" 
-			eclipse="false" failok="false" exceptions="true" 
-			files="package.bnd"/> 
+		<jar jarfile="${jar.name}" basedir="build" manifest="META-INF/MANIFEST.MF" />
 	</target>
 
   <target name="install" depends="jar">
-	<copy file="${jar.name}"
-		  toDir="${install.dir}"/>
+	<copy file="${jar.name}" toDir="${install.dir}"/>
   </target>
 
   <target name="clean">
