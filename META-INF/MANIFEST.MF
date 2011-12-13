@@ -3,12 +3,8 @@ Bundle-ManifestVersion: 2
 Bundle-Name: org.pathvisio.go
 Bundle-SymbolicName: org.pathvisio.go
 Bundle-Version: 1.0.0
-Bundle-ClassPath: pvplugins-GO.jar,PV-GO.jar
 Bundle-Activator: org.pathvisio.go.GoPlugin
-Export-Package: org,
- org.pathvisio,
- org.pathvisio.go,
- org.pathvisio.obo
+Export-Package: org.pathvisio.go, org.pathvisio.obo
 Require-Bundle: org.pathvisio.core;bundle-version="2.0.11",
  org.pathvisio.gui;bundle-version="2.0.11",
  org.pathvisio.desktop;bundle-version="2.0.11",
