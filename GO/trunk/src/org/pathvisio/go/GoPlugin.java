@@ -11,10 +11,10 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingWorker;
 
 import org.bridgedb.IDMapperStack;
 import org.bridgedb.bio.BioDataSource;
-import org.jdesktop.swingworker.SwingWorker;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 import org.pathvisio.core.debug.Logger;
