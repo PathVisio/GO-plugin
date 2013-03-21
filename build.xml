@@ -1,12 +1,13 @@
 <?xml version="1.0"?>
-<project name="org.pathvisio.go" default="install" basedir=".">
+<project name="org.pathvisio.go" default="jar" basedir=".">
 	<!-- always be java 1.6 compatible -->
 	<property name="ant.build.javac.target" value="1.6"/>
 	<property name="ant.build.javac.source" value="1.6"/>
 
-	<property name="pathvisio.dir" value="../pathvisio"/>
+	<property name="pathvisio.dir" value="../../common-bundles/trunk"/>
+	<property name="common.bundles" value="../../common-bundles/trunk"/>
 
-	<import file="${pathvisio.dir}/plugin-common.xml"/>
+	<import file="${common.bundles}/plugin-common.xml"/>
 
 	<path id="project.class.path">
 		<fileset dir="${pathvisio.dir}/modules">

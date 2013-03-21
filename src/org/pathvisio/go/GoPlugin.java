@@ -8,6 +8,8 @@ import javax.swing.AbstractAction;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -41,28 +43,34 @@ public final class GoPlugin implements Plugin, BundleActivator
 	private PvDesktop desktop;
 	private GoAction goAction;
 	private GoBrowseAction browseAction;
+	private JMenu goPluginMenu;
 	
 	public void init(PvDesktop desktop) 
 	{
 		this.desktop = desktop;
+		goPluginMenu = new JMenu("GO plugin");
+		
 		goAction = new GoAction();
 		browseAction = new GoBrowseAction();
-		desktop.registerMenuAction("Data", goAction);
-		desktop.registerMenuAction("Data", browseAction);
+		
+		JMenuItem create = new JMenuItem("Create GO Pathway");
+		create.addActionListener(goAction);
+		
+		JMenuItem browse = new JMenuItem("Browse GO Ontology");
+		browse.addActionListener(browseAction);
+		
+		goPluginMenu.add(create);
+		goPluginMenu.add(browse);
+		
+		desktop.registerSubMenu("Plugins", goPluginMenu);
 	}
 
 	public void done() {
-		desktop.unregisterMenuAction("Data", goAction);
-		desktop.unregisterMenuAction("Data", browseAction);
+		desktop.unregisterSubMenu("Plugins", goPluginMenu);
 	}
 
 	private class GoAction extends AbstractAction
 	{
-		GoAction ()
-		{
-			putValue (NAME, "Create GO Pathway");	
-		}
-
 		public void actionPerformed(ActionEvent arg0) 
 		{
 			GoPluginFrame frame = new GoPluginFrame();
@@ -71,18 +79,16 @@ public final class GoPlugin implements Plugin, BundleActivator
 	}
 
 	private class GoBrowseAction extends AbstractAction
-	{
-		GoBrowseAction ()
-		{
-			putValue (NAME, "Browse GO Ontology");	
-		}
-
+	{		
 		public void actionPerformed(ActionEvent arg0) 
 		{
-			//TODO: deal with situation when preference is not set or not correct
-			GoReader reader = new GoReader(PreferenceManager.getCurrent().getFile(GoPreference.GO_PLUGIN_OBO_FILE));
-			BrowseDialog frame = new BrowseDialog(desktop.getFrame(), reader);
-			frame.setVisible(true);
+			if(!new File(PreferenceManager.getCurrent().get (GoPreference.GO_PLUGIN_OBO_FILE)).exists()) {
+				//TODO: deal with situation when preference is not set or not correct
+			} else {
+				GoReader reader = new GoReader(PreferenceManager.getCurrent().getFile(GoPreference.GO_PLUGIN_OBO_FILE));
+				BrowseDialog frame = new BrowseDialog(desktop.getFrame(), reader);
+				frame.setVisible(true);
+			}
 		}
 	}
 
@@ -90,7 +96,7 @@ public final class GoPlugin implements Plugin, BundleActivator
 	{
 		GO_PLUGIN_GO_ID("GO:0006096"), // go id for glycolysis, useful for testing
 		GO_PLUGIN_OBO_FILE(System.getProperty("user.home") + File.separator + "gene_ontology.obo"), // gene_ontology.obo
-		GO_PLUGIN_TARGET_DATASOURCE(BioDataSource.ENSEMBL_HUMAN.getFullName());
+		GO_PLUGIN_TARGET_DATASOURCE(BioDataSource.ENSEMBL.getFullName());
 		;
 
 		private final String defaultVal;
