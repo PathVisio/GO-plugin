@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<project name="org.pathvisio.go" default="jar" basedir=".">
+	<!-- always be java 1.6 compatible -->
+	<property name="ant.build.javac.target" value="1.6"/>
+	<property name="ant.build.javac.source" value="1.6"/>
+
+	<property name="pathvisio.dir" value="../../common-bundles/trunk"/>
+	<property name="common.bundles" value="../../common-bundles/trunk"/>
+
+	<import file="${common.bundles}/plugin-common.xml"/>
+
+	<path id="project.class.path">
+		<fileset dir="${pathvisio.dir}/modules">
+			<include name="org.pathvisio.core.jar"/>
+			<include name="org.pathvisio.desktop.jar"/>
+			<include name="org.pathvisio.gui.jar"/>
+		</fileset>
+		<fileset dir="${pathvisio.dir}/lib">
+			<include name="felix.jar"/>
+			<include name="org.bridgedb.jar"/>
+			<include name="org.bridgedb.bio.jar"/>
+			<include name="org.bridgedb.rdb.jar"/>
+			<include name="org.bridgedb.rdb.construct.jar"/>
+			<include name="org.pathvisio.jgoodies.forms.jar"/>
+		</fileset>
+	</path>
+
+</project>
