@@ -1,16 +1,17 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: org.pathvisio.go
+Bundle-Name: GO Plugin
 Bundle-SymbolicName: org.pathvisio.go
 Bundle-Version: 1.0.0
 Bundle-Activator: org.pathvisio.go.GoPlugin
 Export-Package: org.pathvisio.go, org.pathvisio.obo
-Require-Bundle: org.pathvisio.core;bundle-version="2.0.11",
- org.pathvisio.gui;bundle-version="2.0.11",
- org.pathvisio.desktop;bundle-version="2.0.11",
+Require-Bundle: org.pathvisio.core;bundle-version="3.0.0",
+ org.pathvisio.gui;bundle-version="3.0.0",
+ org.pathvisio.desktop;bundle-version="3.0.0",
  org.bridgedb;bundle-version="1.1.0",
  org.bridgedb.bio;bundle-version="1.1.0",
  org.bridgedb.rdb;bundle-version="1.1.0",
  org.bridgedb.rdb.construct;bundle-version="1.1.0",
  org.pathvisio.jgoodies.forms;bundle-version="1.2.0"
 Import-Package: org.osgi.framework;version="1.5.0"
+

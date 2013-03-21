@@ -19,18 +19,12 @@ package org.pathvisio.go;
 import java.io.File;
 import java.util.Set;
 
-import javax.swing.JOptionPane;
-
-import org.bridgedb.bio.BioDataSource;
 import org.bridgedb.AttributeMapper;
 import org.bridgedb.BridgeDb;
 import org.bridgedb.DataSource;
 import org.bridgedb.IDMapper;
 import org.bridgedb.IDMapperException;
 import org.bridgedb.Xref;
-import org.bridgedb.rdb.IDMapperRdb;
-import org.bridgedb.rdb.SimpleGdbFactory;
-import org.bridgedb.rdb.construct.DataDerby;
 import org.pathvisio.core.debug.Logger;
 import org.pathvisio.core.model.ConverterException;
 import org.pathvisio.core.model.DataNodeType;
@@ -41,7 +35,6 @@ import org.pathvisio.core.model.PathwayElement;
 import org.pathvisio.core.preferences.PreferenceManager;
 import org.pathvisio.core.util.ProgressKeeper;
 import org.pathvisio.core.util.Utils;
-import org.pathvisio.gui.ProgressDialog;
 
 /**
  * Run GoPathway with the following command line arguments (5 or more):
@@ -132,7 +125,7 @@ public class GoPathway
 		}
 	}
 	
-	Pathway makeGoPathway (GoReader reader, GoTerm base, IDMapper gdb, AttributeMapper adb, ProgressKeeper pk) throws IDMapperException
+	public Pathway makeGoPathway (GoReader reader, GoTerm base, IDMapper gdb, AttributeMapper adb, ProgressKeeper pk) throws IDMapperException
 	{
 		Pathway result = new Pathway();
 
@@ -218,7 +211,7 @@ public class GoPathway
 			pelt.setMHeight(DATANODEHEIGHT);
 			
 			pelt.setDataSource(ref.getDataSource());
-			pelt.setGeneID(ref.getId());
+			pelt.setElementID(ref.getId());
 			pelt.setDataNodeType(DataNodeType.GENEPRODUCT);
 			pelt.setTextLabel(symbol);
 			pelt.setGroupRef (groupRef);
